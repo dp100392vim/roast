@@ -522,7 +522,7 @@ export default {
             translationData.value = null;
 
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/deepl`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/deepl/translate`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
