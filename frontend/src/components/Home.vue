@@ -176,7 +176,7 @@ const recommends = ref('')
 
 onMounted(async () => {
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}//entry/names`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/entry/names`, {
       headers: {
         'Content-Type': 'application/json',
       }
