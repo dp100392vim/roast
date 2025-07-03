@@ -750,10 +750,10 @@ body {
 
 .reader-content {
     height: 100vh;
-    padding: 2rem;
+    padding: 0.5rem;
     overflow-y: auto;
     line-height: 1.6;
-    font-size: 16px;
+    font-size: 19px;
     user-select: text;
 }
 
