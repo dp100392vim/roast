@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 
 const app = express()
-app.use(cors({ origin: 'https://your-frontend.onrender.com' }));
+app.use(cors({ origin: 'https://frontend-65n6.onrender.com' }));
 app.use(express.json())
 
 const entryRoutes = require('./routes/entryRoutes')
