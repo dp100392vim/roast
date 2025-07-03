@@ -122,7 +122,7 @@ export default {
         const showPopup = ref(false);
         const popupType = ref('');
         const selectedWord = ref('');
-        const selectedText = ref('');
+        const selectText = ref('');
         const dictionaryData = ref(null);
         const translationData = ref('');
         const isLoading = ref(false);
@@ -468,7 +468,7 @@ export default {
             const selectedText = selection.toString().trim();
 
             if (selectedText && selectedText.length > 0) {
-                selectedText.value = selectedText;
+                selectText.value = selectedText;
                 await showTranslation(selectedText);
                 selection.removeAllRanges();
             }
@@ -587,7 +587,7 @@ export default {
                 }
             });
             document.addEventListener('click', handleWordClick, { passive: true });
-            document.addEventListener('mouseup', handleTextSelection, { passive: true });
+
             const savedBooks = localStorage.getItem('epubBooks');
             if (savedBooks) {
                 books.value = JSON.parse(savedBooks);
@@ -649,10 +649,6 @@ body {
     background: #f5f5f5;
     height: 100vh;
     overflow: hidden;
-}
-
-p {
-    font-family: Arial, Helvetica, sans-serif !important;
 }
 
 .app {
@@ -772,20 +768,19 @@ p {
 
 }
 
-
-/* Добавьте это в конец ваших стилей */
 .reader-content :deep(p) {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-family: Arial, sans-serif !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Arial, sans-serif !important;
 }
 
-/* Для конкретного класса .bodytext (если он используется) */
 .reader-content :deep(p.bodytext) {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-family: Arial, sans-serif !important;
+    color: #333;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Arial, sans-serif !important;
 }
+
 .popup {
     position: fixed;
     bottom: 0;
