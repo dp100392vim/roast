@@ -128,7 +128,7 @@ export default {
         const isLoading = ref(false);
         const error = ref('');
 
-        const DEEPL_API_KEY = 'YOUR_DEEPL_API_KEY';
+        const DEEPL_API_KEY = import.meta.env.VITE_DEEPL_API_KEY;
 
         const setTranslationMode = (mode) => {
             translationMode.value = mode;
@@ -525,7 +525,7 @@ export default {
                 const response = await fetch('https://api-free.deepl.com/v2/translate', {
                     method: 'POST',
                     headers: {
-                        'Authorization': `DeepL-Auth-Key YOUR_DEEPL_API_KEY`,
+                        'Authorization': DEEPL_API_KEY,
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                     body: new URLSearchParams({

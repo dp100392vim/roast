@@ -1,10 +1,14 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-
 const app = express()
-app.use(cors({ origin: 'https://frontend-65n6.onrender.com' }));
 app.use(express.json())
+
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config(); //$env:NODE_ENV="development"; node server.js         --------------- cmd in shell
+}
+console.log('process.env.CORS', process.env.CORS)
+app.use(cors({ origin: process.env.CORS }));
 
 const entryRoutes = require('./routes/entryRoutes')
 
@@ -12,8 +16,8 @@ app.use('/entry', entryRoutes)
 
 // Connect to DB
 
-const MONGODB_URL = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSW}@cluster0.m8jonut.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
-mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+const URI = process.env.MONGODB_URL
+mongoose.connect(URI);
 
 // Start server
 const PORT = process.env.PORT || 4000;
