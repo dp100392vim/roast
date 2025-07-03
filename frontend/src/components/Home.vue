@@ -176,7 +176,7 @@ const recommends = ref('')
 
 onMounted(async () => {
   try {
-    const response = await fetch(`${process.env.API_URL}/entry/names`, {
+    const response = await fetch(`${import.meta.env.API_URL}/entry/names`, {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -190,7 +190,7 @@ onMounted(async () => {
 const getRecommends = async () => {
   try {
     let type = store.basic.type ? 'espresso' : 'filter'
-    const response = await fetch(`${process.env.API_URL}/entry/recommends?type=${type}&roast=${store.basic.roast}&weight=${store.basic.weight}&batch=${store.basic.batch}&name=${store.basic.name}&weather=${store.basic.weather}`, {
+    const response = await fetch(`${import.meta.env.API_URL}/entry/recommends?type=${type}&roast=${store.basic.roast}&weight=${store.basic.weight}&batch=${store.basic.batch}&name=${store.basic.name}&weather=${store.basic.weather}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
