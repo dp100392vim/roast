@@ -645,10 +645,14 @@ export default {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: Arial, Helvetica, sans-serif !important;
     background: #f5f5f5;
     height: 100vh;
     overflow: hidden;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif !important;
 }
 
 .app {
@@ -750,10 +754,10 @@ body {
 
 .reader-content {
     height: 100vh;
-    padding: 1rem;
+    padding: 1.5rem;
     overflow-y: auto;
     line-height: 1.6;
-    font-size: 19px;
+    font-size: 17px;
     user-select: text;
 }
 
@@ -765,8 +769,23 @@ body {
 
 .reader-content p {
     margin-bottom: 1rem;
+
 }
 
+
+/* Добавьте это в конец ваших стилей */
+.reader-content :deep(p) {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: Arial, sans-serif !important;
+}
+
+/* Для конкретного класса .bodytext (если он используется) */
+.reader-content :deep(p.bodytext) {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: Arial, sans-serif !important;
+}
 .popup {
     position: fixed;
     bottom: 0;
