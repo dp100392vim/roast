@@ -182,7 +182,7 @@ onMounted(async () => {
       }
     });
     names.value = await response.json()
-    console.log('import.meta.env.API_URL', import.meta.env.API_URL)
+    
   } catch (err) {
     console.error(err)
   }
@@ -190,8 +190,10 @@ onMounted(async () => {
 
 const getRecommends = async () => {
   try {
+    console.log('import.meta.env.API_URL', import.meta.env.API_URL)
+    console.log('import.meta.env.API_URL', process.env.API_URL)
     let type = store.basic.type ? 'espresso' : 'filter'
-    const response = await fetch(`${import.meta.env.API_URL}/entry/recommends?type=${type}&roast=${store.basic.roast}&weight=${store.basic.weight}&batch=${store.basic.batch}&name=${store.basic.name}&weather=${store.basic.weather}`, {
+    const response = await fetch(`https://roast-p0mu.onrender.com/entry/recommends?type=${type}&roast=${store.basic.roast}&weight=${store.basic.weight}&batch=${store.basic.batch}&name=${store.basic.name}&weather=${store.basic.weather}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
