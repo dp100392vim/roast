@@ -757,7 +757,7 @@ p {
     padding: 1.5rem;
     overflow-y: auto;
     line-height: 1.6;
-    font-size: 17px;
+    font-size: 18px;
     user-select: text;
 }
 
