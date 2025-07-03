@@ -11,8 +11,10 @@ console.log('process.env.CORS', process.env.CORS)
 app.use(cors({ origin: process.env.CORS }));
 
 const entryRoutes = require('./routes/entryRoutes')
+const deeplRoutes = require('./routes/deeplRoutes')
 
 app.use('/entry', entryRoutes)
+app.use('/deepl', deeplRoutes)
 
 // Connect to DB
 

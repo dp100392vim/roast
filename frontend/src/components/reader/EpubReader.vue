@@ -522,17 +522,14 @@ export default {
             translationData.value = null;
 
             try {
-                const response = await fetch('https://api-free.deepl.com/v2/translate', {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/deepl`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `DeepL-Auth-Key ${DEEPL_API_KEY}`,
-                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Content-Type': 'application/json',
                     },
-                    body: new URLSearchParams({
+                    body: JSON.stringify({
                         text: text,
-                        target_lang: 'RU', // Перевод на русский
-                        source_lang: 'EN'  // Исходный язык — английский
-                    })
+                    }),
                 });
 
                 if (response.ok) {
