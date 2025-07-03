@@ -243,7 +243,7 @@ export default {
 
                 books.value.push(book);
 
-                // localStorage.setItem('epubBooks', JSON.stringify(books.value));
+                localStorage.setItem('epubBooks', JSON.stringify(books.value));
 
             } catch (err) {
                 console.error('Ошибка загрузки EPUB:', err);
@@ -407,7 +407,7 @@ export default {
         const saveReadingPosition = () => {
             if (currentBook.value) {
                 currentBook.value.lastPosition = currentPage.value;
-                // localStorage.setItem('epubBooks', JSON.stringify(books.value));
+                localStorage.setItem('epubBooks', JSON.stringify(books.value));
             }
         };
         const debounce = (func, wait) => {
@@ -577,7 +577,7 @@ export default {
 
         const deleteBook = (bookId) => {
             books.value = books.value.filter(book => book.id !== bookId);
-            // localStorage.setItem('epubBooks', JSON.stringify(books.value));
+            localStorage.setItem('epubBooks', JSON.stringify(books.value));
         };
 
         onMounted(() => {
@@ -750,7 +750,7 @@ body {
 
 .reader-content {
     height: 100vh;
-    padding: 0.5rem;
+    padding: 1rem;
     overflow-y: auto;
     line-height: 1.6;
     font-size: 19px;
