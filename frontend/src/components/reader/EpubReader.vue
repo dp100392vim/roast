@@ -52,7 +52,6 @@
         <div v-if="showPopup" class="popup show" ref="popupRef" @click="closePopup">
             <div class="popup-content" @click.stop>
                 <div class="popup-header">
-                    <h3>{{ popupType === 'dictionary' ? 'Словарь' : 'Перевод' }}</h3>
                     <button class="close-btn" @click="closePopup">×</button>
                 </div>
 
@@ -91,8 +90,11 @@
 
                 <!-- Переводчик -->
                 <div v-if="popupType === 'translation' && translationData" class="translation-result">
-                    <strong>Перевод:</strong> {{ translationData }}
-                    <button class="play-btn" @click="speakTranslation">🔊 Озвучить</button>
+                    {{ selectText }} = >
+                    {{ translationData }}
+
+                    <button class="play-deepl" @click="speakTranslation">🔊 Озвучить</button>
+
                 </div>
             </div>
         </div>
@@ -127,8 +129,6 @@ export default {
         const translationData = ref('');
         const isLoading = ref(false);
         const error = ref('');
-
-        const DEEPL_API_KEY = import.meta.env.VITE_DEEPL_API_KEY;
 
         const setTranslationMode = (mode) => {
             translationMode.value = mode;
@@ -529,12 +529,13 @@ export default {
                     },
                     body: JSON.stringify({
                         text: text,
+                        mode: translationMode.value
                     }),
                 });
 
                 if (response.ok) {
                     const data = await response.json();
-                    translationData.value = data.translations[0].text;
+                    translationData.value = data;
                 } else {
                     throw new Error('Ошибка перевода');
                 }
@@ -555,8 +556,8 @@ export default {
 
         const speakTranslation = () => {
             if ('speechSynthesis' in window && translationData.value) {
-                const utterance = new SpeechSynthesisUtterance(translationData.value);
-                utterance.lang = translationMode.value === 'en-ru' ? 'ru-RU' : 'en-US';
+                const utterance = new SpeechSynthesisUtterance(selectText.value);
+                utterance.lang = translationMode.value === 'en-ru' ? 'en-US' : 'de-DE';
                 window.speechSynthesis.speak(utterance);
             } else {
                 alert('Ваш браузер не поддерживает синтез речи или нет текста для озвучивания.');
@@ -613,6 +614,7 @@ export default {
             translationData,
             isLoading,
             error,
+            selectText,
             setTranslationMode,
             handleFileDrop,
             handleFileSelect,
@@ -768,14 +770,12 @@ body {
 .reader-content :deep(p) {
     padding-top: 10px;
     padding-bottom: 10px;
-    font-family: Arial, sans-serif !important;
 }
 
 .reader-content :deep(p.bodytext) {
     color: #333;
     padding-top: 10px;
     padding-bottom: 10px;
-    font-family: Arial, sans-serif !important;
 }
 
 .popup {
@@ -861,7 +861,19 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
-    margin-left: 1rem;
+    float: right;
+    margin-right: 45px;
+}
+
+.play-deepl {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
 }
 
 .translation-result {
