@@ -182,6 +182,7 @@ onMounted(async () => {
       }
     });
     names.value = await response.json()
+    console.log('import.meta.env.API_URL', import.meta.env.API_URL)
   } catch (err) {
     console.error(err)
   }
