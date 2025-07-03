@@ -525,7 +525,7 @@ export default {
                 const response = await fetch('https://api-free.deepl.com/v2/translate', {
                     method: 'POST',
                     headers: {
-                        'Authorization': DEEPL_API_KEY,
+                        'Authorization': `DeepL-Auth-Key ${DEEPL_API_KEY}`,
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                     body: new URLSearchParams({
