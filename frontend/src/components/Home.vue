@@ -39,7 +39,7 @@
 
 
     <div class="flex gap-5 justify-center items-center bg-green-100 p-5">
-      <input type="number" pattern="[0-9]*" v-model="store.start.exhaust" inputmode="decimal" step="0.1"
+      <input type="text" pattern="[0-9]*" v-model="store.start.exhaust" inputmode="decimal" step="0.1"
         class="input input-xl input-success w-25" />
       <div class="w-7">Exs</div>
       <input type="number" pattern="[0-9]*" v-model="store.start.environment" inputmode="decimal" step="0.1"
@@ -52,7 +52,7 @@
     <div class="flex gap-5 m-5 justify-center items-center">
       <input type="number" pattern="[0-9]*" v-model="store.start.gas" inputmode="decimal" step="0.1"
         class="input input-xl input-success w-25" />Gas
-      HZ
+      HZ {{ store.start.gas }}
       <div class="w-full max-w-xs">
         <input type="range" min="30" max="55" v-model="store.start.hz" class="range range-accent" step="5" />
         <div class="flex justify-between px-2.5 mt-2 text-xs">
@@ -156,7 +156,7 @@
     <div @click="store.addProfile()" class="flex justify-center m-5"><button class="btn btn-success w-60">Add</button>
     </div>
   </div>
-  <EpubReader v-if="toReader"/>
+  <EpubReader v-if="toReader" />
   <div class="nav" @click="switchApp()">to Reader</div>
 </template>
 
@@ -182,7 +182,7 @@ onMounted(async () => {
       }
     });
     names.value = await response.json()
-    
+
   } catch (err) {
     console.error(err)
   }

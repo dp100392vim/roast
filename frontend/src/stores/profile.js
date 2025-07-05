@@ -24,6 +24,7 @@ export const useProfileStore = defineStore('profile', {
                 },
                 end: this.end
             }
+            console.log(payload)
             const res = await fetch(`${import.meta.env.VITE_API_URL}/entry/add`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
