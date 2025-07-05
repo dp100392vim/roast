@@ -26,33 +26,34 @@
       <div class="w-7">{{ store.basic.type ? 'espresso' : 'filter' }}</div>
     </div>
     <div class="flex flex-wrap justify-center items-center gap-2 mt-5 mb-5">
-      <input type="text" pattern="[0-9]*" v-model="store.basic.weather" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.basic.weather" inputmode="decimal"
         class="input input-xl input-success w-25" />Weather
-      <input type="text" pattern="[0-9]*" v-model="store.basic.weight" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.basic.weight" inputmode="decimal"
         class="input input-xl input-success w-25" />Weight
-      <input type="text" pattern="[0-9]*" v-model="store.basic.batch" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.basic.batch" inputmode="decimal"
         class="input input-xl input-success w-25" />Batch No
     </div>
 
     <div class="flex justify-center m-5"><button @click="getRecommends()" class="btn btn-success w-60">Get
         recommends</button></div>
 
+    <div class="divider">
+      <h1>START:</h1>
+    </div>
+    <div class="flex gap-5 justify-center items-center w-89">
 
-    <div class="flex gap-5 justify-center items-center bg-green-100 p-5">
-      <input type="text" pattern="[0-9]*" v-model="store.start.exhaust" inputmode="decimal" 
-        class="input input-xl input-success w-25" /> {{ store.start.exhaust }}
+      <input type="text" pattern="[0-9]*" v-model="store.start.exhaust" inputmode="decimal"
+        class="input input-xl input-success w-25" />
       <div class="w-7">Exs</div>
-      <input type="text" pattern="[0-9]*" v-model="store.start.environment" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.start.environment" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Env</div>
     </div>
-    <div class="divider">
-      <h1>Set:</h1>
-    </div>
-    <div class="flex gap-5 m-5 justify-center items-center">
-      <input type="text" pattern="[0-9]*" v-model="store.start.gas" inputmode="decimal" 
+
+    <div class="flex gap-5 m-5 justify-center items-center ">
+      <input type="text" pattern="[0-9]*" v-model="store.start.gas" inputmode="decimal"
         class="input input-xl input-success w-25" />Gas
-      HZ {{ store.start.gas }}
+      HZ
       <div class="w-full max-w-xs">
         <input type="range" min="30" max="55" v-model="store.start.hz" class="range range-accent" step="5" />
         <div class="flex justify-between px-2.5 mt-2 text-xs">
@@ -64,26 +65,31 @@
           <span>55</span>
         </div>
       </div>
+
     </div>
-    <div class="flex flex-wrap justify-center gap-5 bg-yellow-200 p-5 mt-2">
-      <input type="text" pattern="[0-9]*" v-model="store.middle.time" inputmode="decimal" 
+    <div class="flex mt-10 justify-center ">
+      <button class="btn btn-dash btn-warning">Screen</button>
+    </div>
+    <div class="divider mt-20">
+      <h1>MIDDLE:</h1>
+    </div>
+    <div class="flex flex-wrap justify-center items-center gap-5 p-5 mt-2">
+      <input type="text" pattern="[0-9]*" v-model="store.middle.time" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Trm</div>
-      <input type="text" pattern="[0-9]*" v-model="store.middle.exhaust" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.middle.exhaust" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Exs</div>
-      <input type="text" pattern="[0-9]*" v-model="store.middle.beans" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.middle.beans" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Cf</div>
-      <input type="text" pattern="[0-9]*" v-model="store.middle.environment" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.middle.environment" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Env</div>
     </div>
-    <div class="divider">
-      <h1>Set:</h1>
-    </div>
+
     <div class="flex flex-wrap gap-4 m-5 justify-center items-center">
-      <input type="text" pattern="[0-9]*" v-model="store.middle.gas" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.middle.gas" inputmode="decimal"
         :disabled="store.middle.min || store.middle.off || store.middle.f_off"
         class="input input-xl input-success w-25" />Gas,
       HZ
@@ -102,25 +108,29 @@
       <input type="checkbox" v-model="store.middle.off" class="checkbox checkbox-info" />off
       <input type="checkbox" v-model="store.middle.f_off" class="checkbox checkbox-info" />f off
     </div>
-    <div class="flex flex-wrap justify-center gap-5 bg-yellow-400 p-5 mt-2">
-      <input type="text" pattern="[0-9]*" v-model="store.crack.time" inputmode="decimal" 
+    <div class="flex mt-10 justify-center ">
+      <button class="btn btn-dash btn-warning">Screen</button>
+    </div>
+    <div class="divider mt-20">
+      <h1>CRACK:</h1>
+    </div>
+    <div class="flex flex-wrap justify-center items-center gap-5  p-5 mt-2">
+      <input type="text" pattern="[0-9]*" v-model="store.crack.time" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Trm</div>
-      <input type="text" pattern="[0-9]*" v-model="store.crack.exhaust" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.crack.exhaust" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Exs</div>
-      <input type="text" pattern="[0-9]*" v-model="store.crack.beans" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.crack.beans" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Cf</div>
-      <input type="text" pattern="[0-9]*" v-model="store.crack.environment" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.crack.environment" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Env</div>
     </div>
-    <div class="divider">
-      <h1>Set:</h1>
-    </div>
+
     <div class="flex flex-wrap gap-4 m-5 justify-center items-center">
-      <input type="text" pattern="[0-9]*" v-model="store.crack.gas" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.crack.gas" inputmode="decimal"
         :disabled="store.crack.min || store.crack.off || store.crack.f_off"
         class="input input-xl input-success w-25" />Gas,
       HZ
@@ -139,19 +149,28 @@
       <input type="checkbox" v-model="store.crack.off" class="checkbox checkbox-info" />off
       <input type="checkbox" v-model="store.crack.f_off" class="checkbox checkbox-info" />f off
     </div>
-    <div class="flex flex-wrap justify-center gap-5 bg-yellow-500 p-5 mt-2">
-      <input type="text" pattern="[0-9]*" v-model="store.end.time" inputmode="decimal" 
+    <div class="flex mt-10 justify-center ">
+      <button class="btn btn-dash btn-warning">Screen</button>
+    </div>
+    <div class="divider mt-20">
+      <h1>END:</h1>
+    </div>
+    <div class="flex flex-wrap justify-center items-center gap-5  p-5 mt-2">
+      <input type="text" pattern="[0-9]*" v-model="store.end.time" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Trm</div>
-      <input type="text" pattern="[0-9]*" v-model="store.end.exhaust" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.end.exhaust" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Exs</div>
-      <input type="text" pattern="[0-9]*" v-model="store.end.beans" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.end.beans" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Cf</div>
-      <input type="text" pattern="[0-9]*" v-model="store.end.environment" inputmode="decimal" 
+      <input type="text" pattern="[0-9]*" v-model="store.end.environment" inputmode="decimal"
         class="input input-xl input-success w-25" />
       <div class="w-7">Env</div>
+    </div>
+    <div class="flex mt-10 justify-center ">
+      <button class="btn btn-dash btn-warning">Screen</button>
     </div>
     <div @click="store.addProfile()" class="flex justify-center m-5"><button class="btn btn-success w-60">Add</button>
     </div>
