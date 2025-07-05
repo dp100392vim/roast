@@ -38,9 +38,9 @@
         recommends</button></div>
 
 
-    <div class="flex gap-5 justify-center items-center bg-green-100 p-5"> new vlue
+    <div class="flex gap-5 justify-center items-center bg-green-100 p-5"> new vlue 
       <input type="number" pattern="[0-9]*" v-model="store.start.exhaust" inputmode="decimal" step="any"
-        class="input input-xl input-success w-25" />
+        class="input input-xl input-success w-25" /> {{ store.start.exhaust }}
       <div class="w-7">Exs</div>
       <input type="number" pattern="[0-9]*" v-model="store.start.environment" inputmode="decimal" step="0.1"
         class="input input-xl input-success w-25" />
